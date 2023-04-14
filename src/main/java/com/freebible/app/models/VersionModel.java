@@ -1,6 +1,11 @@
 package com.freebible.app.models;
 
-import jakarta.persistence.Column;
+
+
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,25 +18,15 @@ import jakarta.persistence.Table;
 public class VersionModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	@Column
+	@JsonProperty("codversion")
 	private String abbreviation;
-	@Column 
 	private String language;
-	@Column 
 	private String version;
-	@Column
+	@JsonProperty("info")
 	private String info_url;
-	@Column
-	private Long published;
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getAbbreviation() {
-		return abbreviation;
+	
+	public String abbreviation() {
+		return  abbreviation;
 	}
 	public void setAbbreviation(String abbreviation) {
 		this.abbreviation = abbreviation;
@@ -53,12 +48,6 @@ public class VersionModel {
 	}
 	public void setInfo_url(String info_url) {
 		this.info_url = info_url;
-	}
-	public Long getPublished() {
-		return published;
-	}
-	public void setPublished(Long published) {
-		this.published = published;
 	}
 	
 
