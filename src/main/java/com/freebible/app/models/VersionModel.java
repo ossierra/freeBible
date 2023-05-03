@@ -3,14 +3,22 @@ package com.freebible.app.models;
 
 
 
+
+
+
+
+import java.util.Set;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
 @Entity
@@ -18,13 +26,36 @@ import jakarta.persistence.Table;
 public class VersionModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	@JsonProperty("codversion")
 	private String abbreviation;
 	private String language;
 	private String version;
 	@JsonProperty("info")
 	private String info_url;
+
 	
+	
+	@OneToMany(mappedBy = "versionModel")
+    private Set<EngBookModel> EngBooks; 
+
+
+	/*
+	public EngBookModel getEngBookModel() {
+		return engBookModel;
+	}
+	public void setEngBookModel(EngBookModel engBookModel) {
+		this.engBookModel = engBookModel;
+	}*/
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getAbbreviation() {
+		return abbreviation;
+	}
 	public String abbreviation() {
 		return  abbreviation;
 	}
@@ -49,6 +80,7 @@ public class VersionModel {
 	public void setInfo_url(String info_url) {
 		this.info_url = info_url;
 	}
+	
 	
 
 }

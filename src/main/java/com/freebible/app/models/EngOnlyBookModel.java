@@ -1,22 +1,25 @@
 package com.freebible.app.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+
+
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@Table(name="bible_aa_books")
-public class BookModel {
-	
+@Table(name="bible_eng_books")
+public class EngOnlyBookModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id ;
+	private Long id;
+	private String genre;
 	private String name;
 	private String abreviation;
 	private String testament;
-	private String Genre;
+
 	public Long getId() {
 		return id;
 	}
@@ -42,10 +45,11 @@ public class BookModel {
 		this.testament = testament;
 	}
 	public String getGenre() {
-		return Genre;
+		return genre;
 	}
 	public void setGenre(String genre) {
-		Genre = genre;
+		this.genre = genre;
 	}
-	
+
+
 }
