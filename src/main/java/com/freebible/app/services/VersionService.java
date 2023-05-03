@@ -33,23 +33,35 @@ public class VersionService {
     IChapterEngRepository chapterEngRepository;
      
 
-
-
-     
+       //Get all version
 		public ArrayList<VersionModel> getVersion(){
 			 return (ArrayList<VersionModel>) versionRepository.findAll();
 			 
 		 }
+		/*ENG*/
+		//get ENG version
 	 	public ArrayList<EngOnlyBookModel> getBibleEng(){
 	 		return (ArrayList<EngOnlyBookModel>) onlybookEngRepository.findAll();
 	 	 }
+	 	//Get Eng by book
+	 	public Optional<EngBookModel> getBibleEngbyBook(Long id){
+	 		return  bookEngRepository.findById(id);
+	 	 }
+	 	//Get Eng by Book and chapter
+	 	public List<EngChapterModel> getBibleEngbyBookandChapter(Long codbook,Long codchapter){
+	 		return  chapterEngRepository.findByBookChapter(codbook,codchapter);
+	 		
+	 	 }
+	 	public List<EngChapterModel> getBiblebyBookChapterAndVerse(Long codbook,Long codchapter, Long codverse){
+	 		return  chapterEngRepository.findByBookChapterVerse(codbook,codchapter,codverse);
+	 	}
+	 	
+	 	/*ASV*/
+	 	// get ASV version
 	 	public ArrayList<AsvOnlyBookModel> getBibleAsv(){
 	 		return (ArrayList<AsvOnlyBookModel>) onlybookAsvRepository.findAll();
 	 	 }
 	 	
-	 	public Optional<EngBookModel> getBibleEngbyBook(Long id){
-	 		return  bookEngRepository.findById(id);
-	 	 }
 	 	
 
 

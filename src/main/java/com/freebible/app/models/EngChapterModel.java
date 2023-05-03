@@ -9,9 +9,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "bible_eng")
@@ -19,11 +22,12 @@ public class EngChapterModel {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonIgnore
 	private Long id;
 	@Column(insertable=false, updatable=false)
 	private Long book;
-	private String chapter;
-	private String verse;
+	private Long chapter;
+	private Long verse;
 	private String text;
 
 
@@ -44,17 +48,17 @@ public class EngChapterModel {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getChapter() {
+
+	public Long getChapter() {
 		return chapter;
 	}
-	public void setChapter(String chapter) {
+	public void setChapter(Long chapter) {
 		this.chapter = chapter;
 	}
-	
-	public String getVerse() {
+	public Long getVerse() {
 		return verse;
 	}
-	public void setVerse(String verse) {
+	public void setVerse(Long verse) {
 		this.verse = verse;
 	}
 	public String getText() {
