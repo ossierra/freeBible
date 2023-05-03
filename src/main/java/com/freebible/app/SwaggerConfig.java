@@ -1,5 +1,7 @@
 package com.freebible.app;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collections;
 
 import org.springframework.context.annotation.Bean;
@@ -25,20 +27,23 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("com.freebible.app.controllers"))
                 .paths(PathSelectors.any())
                 .build()
+                .directModelSubstitute(LocalDate.class, java.sql.Date.class)
+                .directModelSubstitute(LocalDateTime.class, java.util.Date.class)
                 .apiInfo(getApiInfo());
         }   
      
-        private ApiInfo getApiInfo() {
+       private ApiInfo getApiInfo() {
             return new ApiInfo(
-                    "Customer Service API CRUD",
-                    "Customer Service API CRUD Documentation",
+                    "API Free Bible",
+                    "API FreeBible Documentation",
                     "1.0",
-                    "https://oscarsierra.site",
-                    new Contact("oscarsierra", "https://oscarsierra.site", "oscarsierracontreras@gmail.com"),
+                    "https://freebible.me",
+                    new Contact("Oscar Sierra", "https://freebible.me", "oscarsierracontreras@gmail.com"),
                     "LICENSE",
-                    "LICENSE URL",
+                    "https://freebible.me",
                     Collections.emptyList()
                     );
         }
+
      
 }

@@ -26,8 +26,8 @@ import javax.persistence.Table;
 public class VersionModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonProperty("idversion")
 	private Long id;
-	@JsonProperty("codversion")
 	private String abbreviation;
 	private String language;
 	private String version;

@@ -32,13 +32,13 @@ public class VersionController {
 	private VersionService versionService;
 	
     @GetMapping("bibles")
-	public ArrayList<VersionModel> getVersion(){
+	public ArrayList<VersionModel> getAllVersions(){
 		return this.versionService.getVersion();
     }
     
     //get version ENG
-    @GetMapping(path = "bibles/{codversion}")
-    public ArrayList getBiblebyVersion (@PathVariable("codversion")  Long codversion){
+    @GetMapping(path = "bibles/{idversion}")
+    public ArrayList getBiblebyVersion (@PathVariable("idversion")  Long codversion){
 		if (codversion==0) {
 			return this.versionService.getBibleEng();
     	}
@@ -49,24 +49,24 @@ public class VersionController {
 		
 	}
 
-	@GetMapping(path = "bibles/{codversion}/{codbook}")
-	public Optional<EngBookModel> getBibleBook( @PathVariable("codversion")  Long codversion, @PathVariable("codbook")  Long codbook){
+	@GetMapping(path = "bibles/{idversion}/{codbook}")
+	public Optional<EngBookModel> getBibleVersionBook( @PathVariable("idversion")  Long codversion, @PathVariable("codbook")  Long codbook){
 		if(codversion==0) {
 		return this.versionService.getBibleEngbyBook(codbook);
 		}
 		return null;
 	}
 	
-	@GetMapping(path = "bibles/{codversion}/{codbook}/{codchapter}")
-	public List<EngChapterModel> getBibleChapter( @PathVariable("codversion")  Long codversion, @PathVariable("codbook")  Long codbook, @PathVariable("codchapter")  Long codchapter){
+	@GetMapping(path = "bibles/{idversion}/{codbook}/{codchapter}")
+	public List<EngChapterModel> getBibleVersionBookChapter( @PathVariable("idversion")  Long codversion, @PathVariable("codbook")  Long codbook, @PathVariable("codchapter")  Long codchapter){
 		if(codversion==0) {
 		return this.versionService.getBibleEngbyBookandChapter(codbook,codchapter);
 		}
 		return null;
 	}
 	
-	@GetMapping(path = "bibles/{codversion}/{codbook}/{codchapter}/{codverse}")
-	public List<EngChapterModel> getBibleChapter( @PathVariable("codversion")  Long codversion, @PathVariable("codbook")  Long codbook, @PathVariable("codchapter")  Long codchapter,@PathVariable("codverse")  Long codverse){
+	@GetMapping(path = "bibles/{idversion}/{codbook}/{codchapter}/{codverse}")
+	public List<EngChapterModel> getBibleVersionBookChapterVerse( @PathVariable("idversion")  Long codversion, @PathVariable("codbook")  Long codbook, @PathVariable("codchapter")  Long codchapter,@PathVariable("codverse")  Long codverse){
 		if(codversion==0) {
 		return this.versionService.getBiblebyBookChapterAndVerse(codbook,codchapter,codverse);
 		}
