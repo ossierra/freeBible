@@ -18,27 +18,31 @@ import com.freebible.app.models.EngOnlyBookModel;
 import com.freebible.app.models.VersionModel;
 import com.freebible.app.services.VersionService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 
 
 @RestController
 @RequestMapping("/v1/")
-//@RequestMapping(value="/v1/biblies",params="codversion")
-
-
-
+@Api(tags = "Controller Free Bible", description = "Controller for API Free Bible, all method used. ")
 public class VersionController {
 	
 	@Autowired
 	private VersionService versionService;
-	
+	@ApiOperation(value = "This method is used to get all versions.")
     @GetMapping("bibles")
 	public ArrayList<VersionModel> getAllVersions(){
 		return this.versionService.getVersion();
     }
     
-    //get version ENG
+
+	@ApiOperation(value = "This method is used to get a Bible version")
     @GetMapping(path = "bibles/{idversion}")
     public ArrayList getBiblebyVersion (@PathVariable("idversion")  Long codversion){
+		/*For ENG versión*/
 		if (codversion==0) {
 			return this.versionService.getBibleEng();
     	}
@@ -48,34 +52,33 @@ public class VersionController {
 		return null;
 		
 	}
-
+    @ApiOperation(value = "This method is used to get a book")
 	@GetMapping(path = "bibles/{idversion}/{codbook}")
 	public Optional<EngBookModel> getBibleVersionBook( @PathVariable("idversion")  Long codversion, @PathVariable("codbook")  Long codbook){
-		if(codversion==0) {
+    	/*For ENG versión*/
+    	if(codversion==0) {
 		return this.versionService.getBibleEngbyBook(codbook);
 		}
 		return null;
 	}
-	
+    @ApiOperation(value = "This method is used to get a chapter")
 	@GetMapping(path = "bibles/{idversion}/{codbook}/{codchapter}")
 	public List<EngChapterModel> getBibleVersionBookChapter( @PathVariable("idversion")  Long codversion, @PathVariable("codbook")  Long codbook, @PathVariable("codchapter")  Long codchapter){
-		if(codversion==0) {
+    	/*For ENG versión*/
+    	if(codversion==0) {
 		return this.versionService.getBibleEngbyBookandChapter(codbook,codchapter);
 		}
 		return null;
 	}
-	
+    @ApiOperation(value = "This method is used to get a verse")
 	@GetMapping(path = "bibles/{idversion}/{codbook}/{codchapter}/{codverse}")
 	public List<EngChapterModel> getBibleVersionBookChapterVerse( @PathVariable("idversion")  Long codversion, @PathVariable("codbook")  Long codbook, @PathVariable("codchapter")  Long codchapter,@PathVariable("codverse")  Long codverse){
-		if(codversion==0) {
+    	/*For ENG versión*/
+    	if(codversion==0) {
 		return this.versionService.getBiblebyBookChapterAndVerse(codbook,codchapter,codverse);
 		}
 		return null;
 	}
-
-	/*
-	 * @GetMapping(path = "bibles/ENG/{codchapter}/{codverse}") public Optional<>
-	 */
     
 
 	
