@@ -41,13 +41,6 @@ public class VersionModel {
     private Set<EngBookModel> EngBooks; 
 
 
-	/*
-	public EngBookModel getEngBookModel() {
-		return engBookModel;
-	}
-	public void setEngBookModel(EngBookModel engBookModel) {
-		this.engBookModel = engBookModel;
-	}*/
 	public Long getId() {
 		return id;
 	}

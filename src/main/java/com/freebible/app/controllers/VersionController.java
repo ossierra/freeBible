@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +35,7 @@ public class VersionController {
 	private VersionService versionService;
 	@ApiOperation(value = "This method is used to get all versions.")
     @GetMapping("bibles")
+	/*For all version*/
 	public ArrayList<VersionModel> getAllVersions(){
 		return this.versionService.getVersion();
     }
@@ -46,18 +48,15 @@ public class VersionController {
 		if (codversion==0) {
 			return this.versionService.getBibleEng();
     	}
-		if (codversion==1) {
-			return this.versionService.getBibleAsv();
-		}
 		return null;
 		
 	}
     @ApiOperation(value = "This method is used to get a book")
 	@GetMapping(path = "bibles/{idversion}/{codbook}")
-	public Optional<EngBookModel> getBibleVersionBook( @PathVariable("idversion")  Long codversion, @PathVariable("codbook")  Long codbook){
+	public List getBibleVersionBook( @PathVariable("idversion")  Long codversion, @PathVariable("codbook")  Long codbook){
     	/*For ENG versión*/
     	if(codversion==0) {
-		return this.versionService.getBibleEngbyBook(codbook);
+		       return this.versionService.getBibleEngbyBook(codbook);
 		}
 		return null;
 	}

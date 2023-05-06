@@ -7,14 +7,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.freebible.app.models.AsvOnlyBookModel;
+
 import com.freebible.app.models.EngBookModel;
 import com.freebible.app.models.EngChapterModel;
 import com.freebible.app.models.EngOnlyBookModel;
 import com.freebible.app.models.VersionModel;
 import com.freebible.app.repositories.IBookEngRepository;
 import com.freebible.app.repositories.IChapterEngRepository;
-import com.freebible.app.repositories.IOnlyBookAsvRepository;
 import com.freebible.app.repositories.IOnlyBookEngRepository;
 import com.freebible.app.repositories.IVersionRepository;
 
@@ -27,11 +26,11 @@ public class VersionService {
     IBookEngRepository bookEngRepository;
      @Autowired
     IOnlyBookEngRepository onlybookEngRepository;
-     @Autowired
-    IOnlyBookAsvRepository onlybookAsvRepository;
+
      @Autowired
     IChapterEngRepository chapterEngRepository;
-     
+
+    
 
        //Get all version
 		public ArrayList<VersionModel> getVersion(){
@@ -43,9 +42,10 @@ public class VersionService {
 	 	public ArrayList<EngOnlyBookModel> getBibleEng(){
 	 		return (ArrayList<EngOnlyBookModel>) onlybookEngRepository.findAll();
 	 	 }
-	 	//Get Eng by book
-	 	public Optional<EngBookModel> getBibleEngbyBook(Long id){
-	 		return  bookEngRepository.findById(id);
+	 	//Get Eng by Book and chapter
+	 	public ArrayList<?> getBibleEngbyBook(Long codbook){
+	 		return  (ArrayList<?>) chapterEngRepository.findByBook(codbook);
+	 		
 	 	 }
 	 	//Get Eng by Book and chapter
 	 	public List<EngChapterModel> getBibleEngbyBookandChapter(Long codbook,Long codchapter){
@@ -56,11 +56,7 @@ public class VersionService {
 	 		return  chapterEngRepository.findByBookChapterVerse(codbook,codchapter,codverse);
 	 	}
 	 	
-	 	/*ASV*/
-	 	// get ASV version
-	 	public ArrayList<AsvOnlyBookModel> getBibleAsv(){
-	 		return (ArrayList<AsvOnlyBookModel>) onlybookAsvRepository.findAll();
-	 	 }
+		
 	 	
 	 	
 
