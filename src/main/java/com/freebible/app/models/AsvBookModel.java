@@ -18,8 +18,8 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="bible_eng_books")
-public class EngBookModel {
+@Table(name="bible_asv_books")
+public class AsvBookModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -32,11 +32,6 @@ public class EngBookModel {
 	@JoinColumn(name="idversion",referencedColumnName = "id")
 	private VersionModel versionModel;
 	
-	
-	
-	@OneToMany(mappedBy = "engBookModel")
-	@OrderBy("id")
-    private Set<EngChapterModel> EngChapter;
     
 
 	/*

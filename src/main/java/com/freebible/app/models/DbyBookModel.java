@@ -2,16 +2,24 @@ package com.freebible.app.models;
 
 
 
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
+
+
 @Entity
-@Table(name="bible_eng_books")
-public class EngOnlyBookModel {
+@Table(name="bible_dby_books")
+public class DbyBookModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -19,7 +27,19 @@ public class EngOnlyBookModel {
 	private String name;
 	private String abreviation;
 	private String testament;
+	
+	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+	@JoinColumn(name="idversion",referencedColumnName = "id")
+	private VersionModel versionModel;
+	
+    
 
+	/*
+	 * public Set<EngChapterModel> getEngChapter() {
+	 * 
+	 * return EngChapter; } public void setEngChapter(Set<EngChapterModel>
+	 * engChapter) { EngChapter = engChapter; }
+	 */
 	public Long getId() {
 		return id;
 	}
