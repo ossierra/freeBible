@@ -4,6 +4,8 @@ package com.freebible.app.models;
 
 
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 
@@ -30,6 +34,9 @@ public class BbeBookModel {
 	@JoinColumn(name="idversion",referencedColumnName = "id")
 	private VersionModel versionModel;
 	
+	@OneToMany(mappedBy = "bbeBookModel")
+	@OrderBy("id")
+    private Set<BbeChapterModel> BbeChapter;
     
 
 	/*

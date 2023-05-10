@@ -32,6 +32,10 @@ public class AsvBookModel {
 	@JoinColumn(name="idversion",referencedColumnName = "id")
 	private VersionModel versionModel;
 	
+
+	@OneToMany(mappedBy = "asvBookModel")
+	@OrderBy("id")
+    private Set<AsvChapterModel> AsvChapter;
     
 
 	/*

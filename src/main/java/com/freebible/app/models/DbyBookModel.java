@@ -32,6 +32,9 @@ public class DbyBookModel {
 	@JoinColumn(name="idversion",referencedColumnName = "id")
 	private VersionModel versionModel;
 	
+	@OneToMany(mappedBy = "dbyBookModel")
+	@OrderBy("id")
+    private Set<DbyChapterModel> DbyChapter;
     
 
 	/*

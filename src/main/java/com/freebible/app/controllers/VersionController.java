@@ -61,7 +61,7 @@ public class VersionController {
 	}
     @ApiOperation(value = "This method is used to get a book")
 	@GetMapping(path = "bibles/{idversion}/{codbook}")
-	public List getBibleVersionBook( @PathVariable("idversion")  Long codversion, @PathVariable("codbook")  Long codbook){
+	public ResponseEntity getBibleVersionBook( @PathVariable("idversion")  Long codversion, @PathVariable("codbook")  Long codbook){
     	/*For ENG versión*/
     	if(codversion==0) {
 		       return this.versionService.getBibleEngbyBook(codbook);
@@ -76,11 +76,11 @@ public class VersionController {
 		       return this.versionService.getBibleDbybyBook(codbook);
 		       
 		}
-		return null;
+    	return this.versionService.NoTContent();
 	}
     @ApiOperation(value = "This method is used to get a chapter")
 	@GetMapping(path = "bibles/{idversion}/{codbook}/{codchapter}")
-	public List getBibleVersionBookChapter( @PathVariable("idversion")  Long codversion, @PathVariable("codbook")  Long codbook, @PathVariable("codchapter")  Long codchapter){
+	public ResponseEntity getBibleVersionBookChapter( @PathVariable("idversion")  Long codversion, @PathVariable("codbook")  Long codbook, @PathVariable("codchapter")  Long codchapter){
     	/*For ENG versión*/
     	if(codversion==0) {
 		return this.versionService.getBibleEngbyBookandChapter(codbook,codchapter);
@@ -94,11 +94,11 @@ public class VersionController {
     	if(codversion==3) {
     		return this.versionService.getBibleDbybyBookandChapter(codbook,codchapter);
     		}
-		return null;
+    	return this.versionService.NoTContent();
 	}
     @ApiOperation(value = "This method is used to get a verse")
 	@GetMapping(path = "bibles/{idversion}/{codbook}/{codchapter}/{codverse}")
-	public List getBibleVersionBookChapterVerse( @PathVariable("idversion")  Long codversion, @PathVariable("codbook")  Long codbook, @PathVariable("codchapter")  Long codchapter,@PathVariable("codverse")  Long codverse){
+	public ResponseEntity<List> getBibleVersionBookChapterVerse( @PathVariable("idversion")  Long codversion, @PathVariable("codbook")  Long codbook, @PathVariable("codchapter")  Long codchapter,@PathVariable("codverse")  Long codverse){
     	/*For ENG versión*/
     	if(codversion==0) {
 		return this.versionService.getBibleEngbyBookChapterAndVerse(codbook,codchapter,codverse);
@@ -113,7 +113,7 @@ public class VersionController {
     	if(codversion==3) {
     		return this.versionService.getBibleDbybyBookChapterAndVerse(codbook,codchapter,codverse);
     		}
-		return null;
+    	return this.versionService.NoTContent();
 	}
     
 
